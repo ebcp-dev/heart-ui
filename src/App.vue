@@ -1,12 +1,9 @@
 <template>
   <div>  
     <nav
-      class="navbar is-primary"
-      role="navigation"
-      aria-label="main navigation"
-    >
+      class="navbar is-primary is-size-7-mobile" role="navigation" aria-label="main navigation" >
       <div class="navbar-brand">
-        <router-link class="navbar-item" to="/">Home</router-link>
+        <router-link class="navbar-item" to="/">Heart</router-link>
         <router-link class="navbar-item" to="/diagnosis">Diagnosis</router-link>
       </div>
     </nav>

@@ -78,7 +78,7 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import useVuelidate from '@vuelidate/core'
-import { required, minValue } from '@vuelidate/validators'
+import { required, minValue, maxValue, maxLength } from '@vuelidate/validators'
 import store from '../store'
 
 import { cp_options, restecg_options, slope_options, ca_options, thal_options, sex_options, fbs_options, exang_options } from '../utils/options'
@@ -108,17 +108,17 @@ export default {
   data() {
     return {
       form_input: {
-        age: 20,
+        age: 53,
         sex: 1,
         cp: 1,
-        trestbps: 110,
-        chol: 230,
-        fbs: 1,
+        trestbps: 129,
+        chol: 252,
+        fbs: 0,
         restecg: 1,
-        thalach: 140,
-        exang: 1,
-        oldpeak: 2.2,
-        slope: 1,
+        thalach: 160,
+        exang: 0,
+        oldpeak: 1,
+        slope: 2,
         ca: 0,
         thal: 3
       },
@@ -131,7 +131,8 @@ export default {
       form_input: {
         age: {
           required,
-          minValue: minValue(0)
+          minValue: minValue(0),
+          maxLength: maxLength(3)
         },
         sex: {
           required
@@ -141,11 +142,13 @@ export default {
         },
         trestbps: {
           required,
-          minValue: minValue(0)
+          minValue: minValue(0),
+          maxLength: maxLength(3)
         },
         chol: {
           required,
-          minValue: minValue(0)
+          minValue: minValue(0),
+          maxLength: maxLength(3)
         },
         fbs: {
           required
@@ -155,14 +158,17 @@ export default {
         },
         thalach: {
           required,
-          minValue: minValue(0)
+          minValue: minValue(0),
+          maxLength: maxLength(3)
         },
         exang: {
           required
         },
         oldpeak: {
           required,
-          minValue: minValue(0)
+          minValue: minValue(0),
+          maxValue: maxValue(10),
+          maxLength: maxLength(3)
         },
         slope: {
           required

@@ -1,6 +1,6 @@
 ## Heart Prediction UI
 
-Made with Vue.
+Made with Vue and Bulma.
 
 ---
 
@@ -10,5 +10,6 @@ Made with Vue.
 2. Vuex 4.0.0
 3. Vue Router 4.0.6
 4. Vuelidate 2.0
-5. Vite 2.2.3
-6. axios
+5. Bulma
+6. Vite 2.2.3
+7. Chart.js
