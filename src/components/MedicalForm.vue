@@ -108,19 +108,19 @@ export default {
   data() {
     return {
       form_input: {
-        age: 53,
-        sex: 1,
-        cp: 1,
-        trestbps: 129,
-        chol: 252,
-        fbs: 0,
-        restecg: 1,
-        thalach: 160,
-        exang: 0,
-        oldpeak: 1,
-        slope: 2,
-        ca: 0,
-        thal: 3
+        age: null,
+        sex: null,
+        cp: null,
+        trestbps: null,
+        chol: null,
+        fbs: null,
+        restecg: null,
+        thalach: null,
+        exang: null,
+        oldpeak: null,
+        slope: null,
+        ca: null,
+        thal: null
       },
       loading: true,
       errors: ''
