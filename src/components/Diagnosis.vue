@@ -1,5 +1,5 @@
 <template>
-  <section class="section is-size-7-mobile is-size-7-tablet">
+  <section class="section is-size-7-mobile is-size-7-tablet is-size-6-fullhd">
     <div v-if="!loading" class="container">
       <div class="content">
         <h1 class="title">Diagnosis</h1>
@@ -8,22 +8,22 @@
         <h2 v-if="prediction === null" class="has-text-info" >Fill out the form to get evaluated: <router-link  to="/">Go to form.</router-link></h2>
         <p>Data definition:</p>
         <ol>
-          <li>age in years (continuous)</li>
-          <li>sex (Binary): 1= Male, 0= Female </li>
-          <li>(cp) chest pain type (ordinal):Value 0: asymptomatic, Value 1: atypical angina, Value 2: non-anginal pain, Value 3: typical angina</li>
-          <li>(trestbps) resting blood pressure (in mm Hg on admission to the hospital) (continuous)</li>
-          <li>(chol) serum cholesterol in mg/dl (continuous)</li>
-          <li>(fbs) fasting blood sugar > 120 mg/dl(Binary)(1 = true; 0 = false)</li>
-          <li>(restecg) resting electrocardiography results(ordinal 0, 1, 2)</li>
-          <li>(thalach) maximum heart rate achieved (continuous)</li>
-          <li>(exang) exercise induced angina (binary) (1 = yes; 0 = no)</li>
-          <li>(oldpeak) ST depression induced by exercise relative to rest (continuous)</li>
-          <li>(slope) of the peak exercise ST segment (ordinal) (Value 1: up sloping , Value 2: flat , Value 3: down sloping )</li>
-          <li>(ca) number of major blodd vessels (0–3, ordinal) colored by fluoroscopy</li>
-          <li>(thal) maximum heart rate achieved (ordinal) (0 = none; 1 = fixed defect; 2 = normal; 3 = reversible defect)</li>
+          <li>(continuous)age in years</li>
+          <li>(binary)sex: 1 = Male, 0 = Female </li>
+          <li>(ordinal)(cp) chest pain type: 0 = asymptomatic; 1 = atypical angina; 2 = non-anginal pain; 3 = typical angina</li>
+          <li>(continuous)(trestbps) resting blood pressure (in mm Hg on admission to the hospital)</li>
+          <li>(continuous)(chol) serum cholesterol in mg/dl</li>
+          <li>(binary)(fbs) fasting blood sugar > 120 mg/dl: 1 = true; 0 = false</li>
+          <li>(ordinal)(restecg) resting electrocardiography results: 0 = Probable or definite left ventricular hypertrophy; 1 = Normal; 2 = Have ST-T wave abnormality</li>
+          <li>(continuous)(thalach) maximum heart rate achieved</li>
+          <li>(binary)(exang) exercise induced angina: 1 = yes; 0 = no</li>
+          <li>(continuous)(oldpeak) ST depression induced by exercise relative to rest</li>
+          <li>(ordinal)(slope) of the peak exercise ST segment: 1: up sloping ; 2: flat ; 3: down sloping</li>
+          <li>(ordinal)(ca) number of major blood vessels (0–3) colored by fluoroscopy</li>
+          <li>(ordinal)(thal) maximum heart rate achieved: 0 = none; 1 = fixed defect; 2 = normal; 3 = reversible defect</li>
         </ol>
-        <p>Data set from kaggle: <a href="https://www.kaggle.com/ronitf/heart-disease-uci">Heart Disease UCI</a></p>
       </div>
+      <p>Data set from kaggle: <a href="https://www.kaggle.com/ronitf/heart-disease-uci">Heart Disease UCI</a></p>
       <div class="table-container">
         <table class="table is-narrow is-bordered is-striped is-hoverable">
           <thead>
@@ -48,19 +48,19 @@
           <tbody>
             <tr v-if="prediction !== null" >
               <th>You</th>
-              <td>{{ this.attributes.age }}</td>
-              <td>{{ this.attributes.sex }}</td>
-              <td>{{ this.attributes.cp }}</td>
-              <td>{{ this.attributes.trestbps }}</td>
-              <td>{{ this.attributes.chol }}</td>
-              <td>{{ this.attributes.fbs }}</td>
-              <td>{{ this.attributes.restecg }}</td>
-              <td>{{ this.attributes.thalach }}</td>
-              <td>{{ this.attributes.exang }}</td>
-              <td>{{ this.attributes.oldpeak }}</td>
-              <td>{{ this.attributes.slope }}</td>
-              <td>{{ this.attributes.ca }}</td>
-              <td>{{ this.attributes.thal }}</td>
+              <td>{{ attributes.age }}</td>
+              <td>{{ attributes.sex }}</td>
+              <td>{{ attributes.cp }}</td>
+              <td>{{ attributes.trestbps }}</td>
+              <td>{{ attributes.chol }}</td>
+              <td>{{ attributes.fbs }}</td>
+              <td>{{ attributes.restecg }}</td>
+              <td>{{ attributes.thalach }}</td>
+              <td>{{ attributes.exang }}</td>
+              <td>{{ attributes.oldpeak }}</td>
+              <td>{{ attributes.slope }}</td>
+              <td>{{ attributes.ca }}</td>
+              <td>{{ attributes.thal }}</td>
               <td>{{ prediction ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
