@@ -1,12 +1,14 @@
 <template>
-  <section class="section">
-    <div class="container">
-      <canvas class="mb-4" id="barChart" width="25" height="25"></canvas>
-      <canvas class="mb-4" id="ageChart" width="25" height="25"></canvas>
-      <canvas class="mb-4" id="trestbpsChart" width="25" height="25"></canvas>
-      <canvas class="mb-4" id="cholChart" width="25" height="25"></canvas>
+  <canvas class="chart-container mb-4" id="barChart" width="25" height="25"></canvas>
+  <div class="columns">
+    <div class="column">
+      <canvas class="chart-container mb-4" id="ageChart" width="25" height="25"></canvas>
     </div>
-  </section>
+    <div class="column">
+      <canvas class="chart-container mb-4" id="trestbpsChart" width="25" height="25"></canvas>
+      <canvas class="chart-container mb-4" id="cholChart" width="25" height="25"></canvas>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -46,5 +48,13 @@ export default {
 </script>
 
 <style>
+.chart-container {
+  position: relative;
+  min-height: auto;
+  width: 100%;
+  height: 100%;
+  max-height: 1000;
+  max-width: 1000;
+}
 
 </style>

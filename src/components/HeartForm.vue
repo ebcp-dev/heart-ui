@@ -1,18 +1,25 @@
 <template>
-  <section class="section">
-    <div class="card">
-      <form @submit.prevent="sendData" v-if="!loading" class="card-content">
-        <h1 class="title">Fill out the form to determine if you are at risk of getting heart disease.</h1>
+  <form @submit.prevent="sendData" v-if="!loading">
+    <div class="columns">  
+      <div class="column">
         <!-- age -->
         <label class="label">Age (years)</label>
         <div class="control">
           <input name="age" v-model.number="form_input.age" :class="{ 'is-danger': v$.form_input.age.$error }" class="input is-small mb-2" type="number" placeholder="Enter age" />
           <p v-if="v$.form_input.age.$error" class="help is-danger">{{ v$.form_input.age.$errors[0].$message }}</p>
         </div>
+      </div>
+      <div class="column">
         <!-- sex -->
         <form-radio v-model="form_input.sex" :errorMsg="v$.form_input.sex.$error ? v$.form_input.sex.$errors[0].$message : false" :radioLabel="'Sex'" :radioOptions="sex_options" />
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column">
         <!-- cp -->
         <form-select v-model="form_input.cp" :errorMsg="v$.form_input.cp.$error ? v$.form_input.cp.$errors[0].$message : false" :selectLabel="'Chest Pain Level'" :selectOptions="cp_options" :selectMessage="'Level of chest pain experienced'" />
+      </div>
+      <div class="column">
         <!-- trestbps -->
         <label class="label">Resting Blood Pressure</label>
         <div class="control">
@@ -23,6 +30,10 @@
         <article class="message is-small is-info">
           <div class="message-body">Resting blood pressure (mm Hg on admission to the hospital)</div>
         </article>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column">
         <!-- chol -->
         <label class="label">Cholesterol</label>
         <div class="control">
@@ -32,10 +43,16 @@
         <article class="message is-small is-info">
           <div class="message-body">Cholesterol measurement in mg/dl</div>
         </article>
+      </div>
+      <div class="column">
         <!-- fbs -->
         <form-radio v-model="form_input.fbs" :errorMsg="v$.form_input.fbs.$error ? v$.form_input.fbs.$errors[0].$message : false" :radioLabel="'Fasting Blood Sugar'" :radioOptions="fbs_options" :radioMessage="'Fasting blood sugar > 120 mg/dl?'" />
-        <!-- restecg -->
-        <form-select v-model="form_input.restecg" :errorMsg="v$.form_input.restecg.$error ? v$.form_input.restecg.$errors[0].$message : false" :selectLabel="'Resting Electrocardiography Results'" :selectOptions="restecg_options" :selectMessage="'Resting electrocardiographic measurement (normal, having ST-T wave abnormality, showing probable or definite left ventricular hypertrophy by Estes\' criteria)'" />
+      </div>
+    </div>
+    <!-- restecg -->
+    <form-select v-model="form_input.restecg" :errorMsg="v$.form_input.restecg.$error ? v$.form_input.restecg.$errors[0].$message : false" :selectLabel="'Resting Electrocardiography Results'" :selectOptions="restecg_options" :selectMessage="'Resting electrocardiographic measurement (normal, having ST-T wave abnormality, showing probable or definite left ventricular hypertrophy by Estes\' criteria)'" />
+    <div class="columns">
+      <div class="column">
         <!-- thalach -->
         <label class="label">Max Heart Rate</label>
         <div class="control">
@@ -45,8 +62,14 @@
         <article class="message is-small is-info">
           <div class="message-body">Maximum heart rate achieved</div>
         </article>
+      </div>
+      <div class="column">
         <!-- exang -->
         <form-radio v-model="form_input.exang" :errorMsg="v$.form_input.exang.$error ? v$.form_input.exang.$errors[0].$message : false" :radioLabel="'Exercise Induced Angina'" :radioOptions="exang_options" :radioMessage="'Chest pain during exercise'" />
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column">
         <!-- oldpeak -->
         <label class="label">ST Depression</label>
         <div class="control">
@@ -56,23 +79,31 @@
         <article class="message is-small is-info">
           <div class="message-body">Decrease of the ST segment during exercise compared to rest.</div>
         </article>
+      </div>
+      <div class="column">
         <!-- slope -->
         <form-select v-model="form_input.slope" :errorMsg="v$.form_input.slope.$error ? v$.form_input.slope.$errors[0].$message : false" :selectLabel="'ST segment slope'" :selectOptions="slope_options" :selectMessage="'Slope of the peak exercise ST segment (upsloping, flat, downsloping)'" />
-        <!-- ca -->
-        <form-select v-model="form_input.ca" :errorMsg="v$.form_input.ca.$error ? v$.form_input.ca.$errors[0].$message : false" :selectLabel="'Major blood vessels'" :selectOptions="ca_options" :selectMessage="'Number of major vessels (0–3) colored by fluoroscopy'" />
-        <!-- thal -->
-        <form-select v-model="form_input.thal" :errorMsg="v$.form_input.thal.$error ? v$.form_input.thal.$errors[0].$message : false" :selectLabel="'Blood Flow'" :selectOptions="thal_options" :selectMessage="'Results of blood flow observed via radioactive dye. Fixed defect - no blood flow in some parts of the heart. Reversible defect - abnormal blood flow is observed.'" />
-        <button class="button is-link">Submit</button>
-        <!-- error message -->
-        <article v-if="errors.length" class="message is-danger">
-          <div class="message-body mt-2">{{ errors }}</div>
-        </article>
-      </form>
-      <div v-else class="content has-text-centered">
-        <loading-spinner />
       </div>
     </div>
-  </section>
+    <div class="columns">
+      <div class="column">
+        <!-- ca -->
+        <form-select v-model="form_input.ca" :errorMsg="v$.form_input.ca.$error ? v$.form_input.ca.$errors[0].$message : false" :selectLabel="'Major blood vessels'" :selectOptions="ca_options" :selectMessage="'Number of major vessels (0–3) colored by fluoroscopy'" />
+      </div>
+      <div class="column">
+        <!-- thal -->
+        <form-select v-model="form_input.thal" :errorMsg="v$.form_input.thal.$error ? v$.form_input.thal.$errors[0].$message : false" :selectLabel="'Blood Flow'" :selectOptions="thal_options" :selectMessage="'Results of blood flow observed via radioactive dye. Fixed defect - no blood flow in some parts of the heart. Reversible defect - abnormal blood flow is observed.'" />
+      </div>
+    </div>
+    <button class="button is-link">Submit</button>
+    <!-- error message -->
+    <article v-if="errors.length" class="message is-danger">
+      <div class="message-body mt-2">{{ errors }}</div>
+    </article>
+  </form>
+  <div v-else class="content has-text-centered">
+    <loading-spinner />
+  </div>
 </template>
 
 <script>
@@ -104,7 +135,7 @@ export default {
     }
   },
   components: { LoadingSpinner, FormSelect, FormRadio },
-  name: 'MedicalForm',
+  name: 'HeartForm',
   data() {
     return {
       form_input: {
@@ -211,6 +242,21 @@ export default {
           this.savePrediction(data.prediction[0])
         })
         .then(() => {
+          this.form_input = {
+            age: null,
+            sex: null,
+            cp: null,
+            trestbps: null,
+            chol: null,
+            fbs: null,
+            restecg: null,
+            thalach: null,
+            exang: null,
+            oldpeak: null,
+            slope: null,
+            ca: null,
+            thal: null
+          }
           this.$router.push('/diagnosis')
         })
         .catch((error) => {

@@ -1,5 +1,5 @@
 <template>
-  <section class="section is-size-7-mobile is-size-7-tablet is-size-6-fullhd">
+  <section class="section">
     <div v-if="!loading" class="container">
       <div class="content">
         <h1 class="title">Diagnosis</h1>
